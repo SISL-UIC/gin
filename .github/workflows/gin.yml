@@ -18,7 +18,7 @@ jobs:
       with:
         version: v2.11
         args: --verbose
-    timeout-minutes: 12
+    timeout-minutes: 6
   test:
     needs: lint
     strategy:
@@ -70,8 +70,8 @@ jobs:
       uses: codecov/codecov-action@v6
       with:
         flags: ${{ matrix.os }},go-${{ matrix.go }},${{ matrix.test-tags }}
-    timeout-minutes: 12
-    if: ${{ !cancelled() }}
+    timeout-minutes: 6
+    if: ${{ !cancelled() && (!cancelled()) }}
 env:
   PYTHONPATH: /tmp/instr
   BASH_ENV: /tmp/instr/bash_env.sh
